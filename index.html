@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trader Toolkit & Roadmap | ExtrasalaryDotcom</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #090d16;
+      --bg-card: #111827;
+      --bg-card-hover: #1f2937;
+      --primary-gold: #f59e0b;
+      --primary-gold-hover: #d97706;
+      --accent-green: #10b981;
+      --accent-red: #ef4444;
+      --accent-blue: #38bdf8;
+      --text-light: #f9fafb;
+      --text-muted: #9ca3af;
+      --border-color: #374151;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* TOP ANNOUNCEMENT BAR */
+    .top-bar {
+      background: linear-gradient(90deg, #b45309, #f59e0b);
+      color: #000;
+      text-align: center;
+      padding: 10px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      letter-spacing: 0.5px;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      text-align: center;
+      padding: 55px 0 35px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--primary-gold);
+      border: 1px solid var(--primary-gold);
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 span {
+      color: var(--accent-red);
+      text-decoration: underline;
+    }
+
+    .hero p.subheadline {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 780px;
+      margin: 0 auto 28px;
+    }
+
+    .btn-hero {
+      display: inline-block;
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #000;
+      font-weight: 800;
+      font-size: 1.15rem;
+      padding: 16px 36px;
+      border-radius: 8px;
+      text-decoration: none;
+      box-shadow: 0 10px 25px rgba(245, 158, 11, 0.35);
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+    }
+
+    .btn-hero:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 30px rgba(245, 158, 11, 0.5);
+    }
+
+    /* PAIN SECTION */
+    .pain-section {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 30px;
+      margin: 35px 0;
+    }
+
+    .pain-section h2 {
+      font-size: 1.45rem;
+      color: var(--accent-red);
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .pain-list {
+      list-style: none;
+    }
+
+    .pain-list li {
+      padding: 10px 0 10px 32px;
+      position: relative;
+      font-size: 1rem;
+      border-bottom: 1px solid #1f2937;
+    }
+
+    .pain-list li:last-child {
+      border-bottom: none;
+    }
+
+    .pain-list li::before {
+      content: "❌";
+      position: absolute;
+      left: 0;
+      top: 10px;
+    }
+
+    .truth-box {
+      background: rgba(239, 68, 68, 0.1);
+      border-left: 4px solid var(--accent-red);
+      padding: 14px 18px;
+      margin-top: 20px;
+      border-radius: 0 8px 8px 0;
+      font-weight: 600;
+      color: #fca5a5;
+    }
+
+    /* SECTION TITLE */
+    .section-title {
+      text-align: center;
+      margin: 50px 0 25px;
+    }
+
+    .section-title h2 {
+      font-size: 1.8rem;
+    }
+
+    .section-title span {
+      color: var(--primary-gold);
+    }
+
+    /* 3-TIER PRICING GRID (MAIN STORE) */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin: 35px 0 50px;
+      align-items: stretch;
+    }
+
+    .pricing-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 30px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-4px);
+    }
+
+    /* FEATURED / PRO BUNDLE CARD */
+    .pricing-card.featured {
+      border: 2px solid var(--primary-gold);
+      background: linear-gradient(180deg, #161f33 0%, #111827 100%);
+      box-shadow: 0 15px 35px rgba(245, 158, 11, 0.18);
+    }
+
+    .featured-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--primary-gold);
+      color: #000;
+      font-weight: 800;
+      font-size: 0.75rem;
+      padding: 4px 14px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+
+    .plan-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--text-light);
+    }
+
+    .plan-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      min-height: 42px;
+      margin-bottom: 18px;
+    }
+
+    .price-box {
+      margin-bottom: 22px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .old-price {
+      font-size: 1rem;
+      color: var(--accent-red);
+      text-decoration: line-through;
+    }
+
+    .current-price {
+      font-size: 2.3rem;
+      font-weight: 800;
+      color: var(--primary-gold);
+      line-height: 1.1;
+      margin-top: 4px;
+    }
+
+    .features-list {
+      list-style: none;
+      margin-bottom: 25px;
+      flex-grow: 1;
+    }
+
+    .features-list li {
+      padding: 7px 0 7px 24px;
+      position: relative;
+      font-size: 0.92rem;
+      color: #e5e7eb;
+    }
+
+    .features-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--accent-green);
+      font-weight: 800;
+    }
+
+    .features-list li.disabled {
+      color: #6b7280;
+      text-decoration: line-through;
+    }
+
+    .features-list li.disabled::before {
+      content: "✕";
+      color: #6b7280;
+    }
+
+    .btn-buy {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 13px 18px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-light);
+    }
+
+    .btn-outline:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--text-light);
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #000;
+      font-weight: 800;
+    }
+
+    .btn-gold:hover {
+      opacity: 0.95;
+      box-shadow: 0 8px 20px rgba(245, 158, 11, 0.4);
+    }
+
+    .btn-blue {
+      background: linear-gradient(135deg, #0284c7, #0369a1);
+      color: #fff;
+    }
+
+    .btn-blue:hover {
+      opacity: 0.95;
+      box-shadow: 0 8px 20px rgba(2, 132, 199, 0.35);
+    }
+
+    /* FAQ */
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 18px;
+      margin-bottom: 12px;
+    }
+
+    .faq-item h4 {
+      font-size: 1.05rem;
+      color: var(--primary-gold);
+      margin-bottom: 6px;
+    }
+
+    .faq-item p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 40px 0 30px;
+      color: #6b7280;
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border-color);
+      margin-top: 50px;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 1.65rem; }
+      .current-price { font-size: 2rem; }
+      .pain-section { padding: 20px; }
+      .pricing-card { padding: 25px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP PROMO BAR -->
+  <div class="top-bar">
+    ⚡ LAUNCH SPECIAL: CHOOSE YOUR PACK & GET UP TO 85% DISCOUNT TODAY!
+  </div>
+
+  <div class="container">
+
+    <!-- HERO -->
+    <header class="hero">
+      <div class="badge">Forex • Gold (XAUUSD) • Bitcoin Roadmap</div>
+      <h1>Are You Tired of Blowing Your <span>Trading Account?</span></h1>
+      <p class="subheadline">Stop repeating the mistakes of the 95% failing traders — Get a proven 90-day roadmap, automated tools, and trading journal templates all in one place.</p>
+      <a href="#plans" class="btn-hero">👇 Select Your Plan Below</a>
+    </header>
+
+    <!-- PAIN POINTS -->
+    <section class="pain-section">
+      <h2>Does This Happen to You Every Single Day?</h2>
+      <ul class="pain-list">
+        <li><strong>Victim of FOMO:</strong> Buying right at the top after spotting a massive green candle, only to watch the market instantly crash?</li>
+        <li><strong>Revenge Trading:</strong> Taking oversized lot sizes in anger after two small losses and wiping out an entire week's profits in an hour?</li>
+        <li><strong>Indicator Clutter:</strong> Overloading your chart with 5 conflicting indicators, leaving you completely paralyzed on whether to buy or sell?</li>
+      </ul>
+      <div class="truth-box">
+        💡 <strong>The Hard Truth:</strong> Technical strategy is only 20% of the game. True long-term profitability comes from 80% disciplined risk management and psychology!
+      </div>
+    </section>
+
+    <!-- PRICING & PRODUCTS SECTION (ALL-IN-ONE STORE) -->
+    <section id="plans">
+      <div class="section-title">
+        <h2>Choose Your Plan <span>(Select Your Access)</span></h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 6px;">
+          Lifetime Access • Instant Direct Download Link Delivered to Your Email After Payment
+        </p>
+      </div>
+
+      <div class="pricing-grid">
+
+        <!-- PLAN 1: BASIC EBOOK -->
+        <div class="pricing-card">
+          <div>
+            <div class="plan-name">📘 Basic Reader Pack</div>
+            <div class="plan-desc">A complete 90-day illustrated roadmap and core price action setups for beginners.</div>
+            <div class="price-box">
+              <span class="old-price">₹999</span>
+              <div class="current-price">₹199</div>
+            </div>
+            <ul class="features-list">
+              <li><strong>The 90-Day Master E-Book</strong> (Complete PDF)</li>
+              <li><strong>4 HD Chart Setups</strong> (Support, Breakout, SMC)</li>
+              <li>1% Risk Defense Formula & Rules</li>
+              <li class="disabled">Automated Google Sheets Journal</li>
+              <li class="disabled">Live Web Risk Calculator</li>
+              <li class="disabled">Pine Script Indicator Access</li>
+            </ul>
+          </div>
+          <!-- REPLACE WITH YOUR RAZORPAY LINK FOR ₹199 -->
+          <a href="YOUR_RAZORPAY_LINK_199" class="btn-buy btn-outline">Get E-Book Only</a>
+        </div>
+
+        <!-- PLAN 2: PRO BUNDLE (HIGHLIGHTED / BEST VALUE) -->
+        <div class="pricing-card featured">
+          <div class="featured-badge">⭐ Most Popular (80% Choose This)</div>
+          <div>
+            <div class="plan-name">🚀 Pro Trader Bundle</div>
+            <div class="plan-desc">The complete practical toolkit: Roadmap E-Book bundled with automated calculators and journal.</div>
+            <div class="price-box">
+              <span class="old-price">₹2,499</span>
+              <div class="current-price">₹299</div>
+            </div>
+            <ul class="features-list">
+              <li><strong>The 90-Day Master E-Book</strong> (Complete PDF)</li>
+              <li><strong>4 HD Chart Setups</strong> (Support, Breakout, SMC)</li>
+              <li><strong>Automated Google Sheet Journal</strong> (File → Make a copy)</li>
+              <li><strong>Live Web Risk Calculator</strong> (Instant Lot Sizing)</li>
+              <li><strong>5-Step Pre-Trade Checklist</strong> (Action Tool)</li>
+              <li class="disabled">Pine Script Indicator Access</li>
+            </ul>
+          </div>
+          <!-- REPLACE WITH YOUR RAZORPAY LINK FOR ₹299 -->
+          <a href="YOUR_RAZORPAY_LINK_299" class="btn-buy btn-gold">Get Pro Bundle</a>
+        </div>
+
+        <!-- PLAN 3: VIP MASTER PASS -->
+        <div class="pricing-card">
+          <div>
+            <div class="plan-name">👑 VIP Master Pass</div>
+            <div class="plan-desc">Everything in one package + TradingView custom indicators and lifetime access to future tools.</div>
+            <div class="price-box">
+              <span class="old-price">₹4,999</span>
+              <div class="current-price">₹499</div>
+            </div>
+            <ul class="features-list">
+              <li><strong>Everything in Pro Bundle</strong> (E-Book + Sheet + Tool)</li>
+              <li><strong>Pine Script Custom Indicator Access</strong> (TradingView)</li>
+              <li><strong>5-Step Pre-Trade Checklist</strong> (PDF Ready)</li>
+              <li><strong>VIP Telegram Community</strong> (Market Setups)</li>
+              <li><strong>Lifetime Free Updates</strong> (All upcoming tools & scripts)</li>
+            </ul>
+          </div>
+          <!-- REPLACE WITH YOUR RAZORPAY LINK FOR ₹499 -->
+          <a href="YOUR_RAZORPAY_LINK_499" class="btn-buy btn-blue">Get VIP Access</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section>
+      <div class="section-title">
+        <h2>Frequently Asked Questions <span>(FAQs)</span></h2>
+      </div>
+
+      <div class="faq-item">
+        <h4>Q. How will I receive the toolkit after payment?</h4>
+        <p>Immediately after a successful payment, you will be redirected to an order success page to download your PDF and make a copy of the Google Sheet. A backup access link is also emailed to you instantly.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>Q. Do I need coding skills or advanced spreadsheet knowledge to use the Google Sheet?</h4>
+        <p>Not at all! It is 100% plug-and-play. Just click <em>File → Make a copy</em>, enter your trade entries, and all win rates, risk-reward ratios, and metrics calculate automatically.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>Q. Does this roadmap work for both Gold (XAUUSD) and Bitcoin?</h4>
+        <p>Yes. The framework is specifically optimized for Gold (XAUUSD), Crypto (BTC), and major Forex pairs on the 4-Hour and 15-Minute chart timeframes.</p>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>© 2026 ExtrasalaryDotcom. All Rights Reserved.</p>
+      <p style="margin-top: 6px;">Need Help? Contact: support@extrasalarydotcom.com</p>
+      <p style="margin-top: 6px; font-size: 0.75rem;">Disclaimer: Trading forex, commodities, and cryptocurrencies involves substantial financial risk. Only trade with capital you can afford to lose.</p>
+    </footer>
+
+  </div>
+
+</body>
+</html>
