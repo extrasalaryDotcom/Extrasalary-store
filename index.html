@@ -175,7 +175,7 @@
       color: var(--primary-gold);
     }
 
-    /* 3-TIER PRICING GRID (MAIN STORE) */
+    /* 3-TIER PRICING GRID */
     .pricing-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -200,7 +200,7 @@
       transform: translateY(-4px);
     }
 
-    /* FEATURED / PRO BUNDLE CARD */
+    /* FEATURED CARD */
     .pricing-card.featured {
       border: 2px solid var(--primary-gold);
       background: linear-gradient(180deg, #161f33 0%, #111827 100%);
@@ -353,14 +353,109 @@
       font-size: 0.92rem;
     }
 
-    /* FOOTER */
+    /* FOOTER & POLICY BUTTONS */
     footer {
       text-align: center;
       padding: 40px 0 30px;
-      color: #6b7280;
+      color: #9ca3af;
       font-size: 0.85rem;
       border-top: 1px solid var(--border-color);
       margin-top: 50px;
+    }
+
+    .footer-links button {
+      background: none;
+      border: none;
+      color: var(--primary-gold);
+      cursor: pointer;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin: 0 8px;
+      text-decoration: underline;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links button:hover {
+      color: #fff;
+    }
+
+    /* MODAL POPUP STYLES */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(5px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 99999;
+      padding: 20px;
+    }
+
+    .modal-content {
+      background: #111827;
+      color: #e5e7eb;
+      max-width: 650px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 26px;
+      position: relative;
+      line-height: 1.7;
+      text-align: left;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    .modal-content h3 {
+      color: var(--primary-gold);
+      margin-bottom: 15px;
+      font-size: 1.35rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 8px;
+    }
+
+    .modal-content h4 {
+      color: #fff;
+      margin: 16px 0 6px;
+      font-size: 1.05rem;
+    }
+
+    .modal-content p, .modal-content ul {
+      font-size: 0.92rem;
+      color: #d1d5db;
+      margin-bottom: 10px;
+    }
+
+    .modal-content ul {
+      padding-left: 20px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: #374151;
+      color: #fff;
+      border: none;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease;
+    }
+
+    .modal-close:hover {
+      background: var(--accent-red);
     }
 
     @media (max-width: 600px) {
@@ -368,6 +463,7 @@
       .current-price { font-size: 2rem; }
       .pain-section { padding: 20px; }
       .pricing-card { padding: 25px 18px; }
+      .footer-links button { display: inline-block; margin: 4px 6px; }
     }
   </style>
 </head>
@@ -382,15 +478,14 @@
 
     <!-- HERO -->
     <header class="hero">
-       <!-- ExtrasalaryDotcom Brand Header with Clickable Link -->
-<div style="text-align: left; margin-bottom: 15px;">
-  <a href="https://extrasalarydotcom.github.io/6odaystrader-roadmap/" style="text-decoration: none; display: inline-block;">
-    <img src="https://yt3.ggpht.com/zjuAvp8-sptJt6w6T1p9Jv4SEqocu9uxY4eTMUrRAn7QhpNKEwdqZ0r9DMhMvDTAQ4oqz4DMSw=s600-c-k-c0x00ffffff-no-rj-rp-mo" alt="ExtrasalaryDotcom" style="width: 42px; height: 42px; border-radius: 50%; vertical-align: middle; margin-right: 8px; border: 2px solid #fbbf24;">
-    <span style="font-size: 22px; font-weight: 800; vertical-align: middle;">
-      <span style="color: #fbbf24;">Extrasalary</span><span style="color: #ef4444;">Dotcom</span>
-    </span>
-  </a>
-</div>
+      <div style="text-align: left; margin-bottom: 15px;">
+        <a href="https://extrasalarydotcom.github.io/6odaystrader-roadmap/" style="text-decoration: none; display: inline-block;">
+          <img src="https://yt3.ggpht.com/zjuAvp8-sptJt6w6T1p9Jv4SEqocu9uxY4eTMUrRAn7QhpNKEwdqZ0r9DMhMvDTAQ4oqz4DMSw=s600-c-k-c0x00ffffff-no-rj-rp-mo" alt="ExtrasalaryDotcom" style="width: 42px; height: 42px; border-radius: 50%; vertical-align: middle; margin-right: 8px; border: 2px solid #fbbf24;">
+          <span style="font-size: 22px; font-weight: 800; vertical-align: middle;">
+            <span style="color: #fbbf24;">Extrasalary</span><span style="color: #ef4444;">Dotcom</span>
+          </span>
+        </a>
+      </div>
 
       <div class="badge">Forex • Gold (XAUUSD) • Bitcoin Roadmap</div>
       <h1>Are You Tired of Blowing Your <span>Trading Account?</span></h1>
@@ -440,11 +535,11 @@
               <li class="disabled">Pine Script Indicator Access</li>
             </ul>
           </div>
-          <!-- REPLACE WITH YOUR RAZORPAY LINK FOR ₹199 -->
+          <!-- ACTIVE RAZORPAY LINK ₹199 -->
           <a href="https://rzp.io/rzp/HDcbtiPz" class="btn-buy btn-outline">Get E-Book Only</a>
         </div>
 
-        <!-- PLAN 2: PRO BUNDLE (HIGHLIGHTED / BEST VALUE) -->
+        <!-- PLAN 2: PRO BUNDLE (BEST VALUE) -->
         <div class="pricing-card featured">
           <div class="featured-badge">⭐ Most Popular (80% Choose This)</div>
           <div>
@@ -463,7 +558,7 @@
               <li class="disabled">Pine Script Indicator Access</li>
             </ul>
           </div>
-          <!-- REPLACE WITH YOUR RAZORPAY LINK FOR ₹299 -->
+          <!-- ACTIVE RAZORPAY LINK ₹299 -->
           <a href="https://rzp.io/rzp/akUQpGF" class="btn-buy btn-gold">Get Pro Bundle</a>
         </div>
 
@@ -480,11 +575,11 @@
               <li><strong>Everything in Pro Bundle</strong> (E-Book + Sheet + Tool)</li>
               <li><strong>Pine Script Custom Indicator Access</strong> (TradingView)</li>
               <li><strong>5-Step Pre-Trade Checklist</strong> (PDF Ready)</li>
-              <li><strong>VIP Telegram Community</strong> (Market Setups)</li>
+              <li><strong>VIP Trader Study Community</strong> (Educational Market Setups)</li>
               <li><strong>Lifetime Free Updates</strong> (All upcoming tools & scripts)</li>
             </ul>
           </div>
-          <!-- REPLACE WITH YOUR RAZORPAY LINK FOR ₹499 -->
+          <!-- ACTIVE RAZORPAY LINK ₹499 -->
           <a href="https://rzp.io/rzp/JbqQiVhi" class="btn-buy btn-blue">Get VIP Access</a>
         </div>
 
@@ -513,14 +608,140 @@
       </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- COMPLIANT ALL-IN-ONE FOOTER -->
     <footer>
+      <div class="footer-links" style="margin-bottom: 18px;">
+        <button type="button" onclick="openModal('privacyModal')">Privacy Policy</button> |
+        <button type="button" onclick="openModal('termsModal')">Terms & Conditions</button> |
+        <button type="button" onclick="openModal('refundModal')">Refund Policy</button> |
+        <button type="button" onclick="openModal('contactModal')">Contact Us</button>
+      </div>
       <p>© 2026 ExtrasalaryDotcom. All Rights Reserved.</p>
       <p style="margin-top: 6px;">Need Help? Contact: support@extrasalarydotcom.com</p>
-      <p style="margin-top: 6px; font-size: 0.75rem;">Disclaimer: Trading forex, commodities, and cryptocurrencies involves substantial financial risk. Only trade with capital you can afford to lose.</p>
+      <p style="margin-top: 10px; font-size: 0.75rem; color: #6b7280; max-width: 820px; margin-left: auto; margin-right: auto; line-height: 1.5;">
+        <strong>Disclaimer:</strong> ExtrasalaryDotcom is not a SEBI-registered advisor or research analyst. All educational materials, roadmaps, spreadsheets, and indicator scripts are strictly for educational and informational purposes. Trading Forex, Commodities (Gold), and Cryptocurrencies carries substantial financial risk. Only trade with capital you can afford to lose.
+      </p>
     </footer>
 
   </div>
+
+  <!-- ==================== POPUP POLICY MODALS ==================== -->
+
+  <!-- 1. PRIVACY POLICY MODAL -->
+  <div id="privacyModal" class="modal-overlay" onclick="closeModalOutside(event, 'privacyModal')">
+    <div class="modal-content">
+      <button class="modal-close" type="button" onclick="closeModal('privacyModal')">&times;</button>
+      <h3>Privacy Policy</h3>
+      <p><strong>Last Updated:</strong> August 2026</p>
+      <p>Welcome to <strong>ExtrasalaryDotcom</strong>. We value your privacy and are committed to safeguarding your personal data when you access or purchase our digital roadmaps, spreadsheets, and educational tools.</p>
+      
+      <h4>1. Information We Collect</h4>
+      <ul>
+        <li><strong>Personal Information:</strong> Name, email address, phone number, and billing details provided during checkout.</li>
+        <li><strong>Transaction Details:</strong> Payment status, order IDs, and product tier purchased (we never store your bank card numbers, CVV, or UPI PIN on our servers).</li>
+      </ul>
+
+      <h4>2. How We Use Your Information</h4>
+      <ul>
+        <li>To instantly deliver digital downloads, Google Sheet templates, and indicator links.</li>
+        <li>To provide customer support and respond to access queries.</li>
+        <li>To prevent fraudulent duplicate transactions or unauthorized file distribution.</li>
+      </ul>
+
+      <h4>3. Payment Security</h4>
+      <p>All payments are processed securely via certified third-party payment gateways (such as Razorpay) adhering to strict PCI-DSS compliance standards.</p>
+
+      <h4>4. Contact Support</h4>
+      <p>For any privacy-related questions, email us at: <strong>support@extrasalarydotcom.com</strong></p>
+    </div>
+  </div>
+
+  <!-- 2. TERMS & CONDITIONS MODAL -->
+  <div id="termsModal" class="modal-overlay" onclick="closeModalOutside(event, 'termsModal')">
+    <div class="modal-content">
+      <button class="modal-close" type="button" onclick="closeModal('termsModal')">&times;</button>
+      <h3>Terms & Conditions</h3>
+      <p><strong>Last Updated:</strong> August 2026</p>
+      
+      <div style="background: rgba(239, 68, 68, 0.15); border-left: 3px solid #ef4444; padding: 10px; margin: 12px 0; font-size: 0.88rem; color: #fca5a5;">
+        <strong>Educational Disclaimer:</strong> ExtrasalaryDotcom is NOT a SEBI-registered research analyst or investment advisor. All content and tools are strictly for educational and informational purposes.
+      </div>
+
+      <h4>1. No Financial Advice & Risk Disclosure</h4>
+      <p>Trading Forex, Gold (XAUUSD), and Crypto assets involves significant risk of capital loss. Past chart performance and setups do not guarantee future profitability. You are solely responsible for all trades you execute.</p>
+
+      <h4>2. Single-User Personal License</h4>
+      <ul>
+        <li>Your purchase grants a personal, non-transferable, single-user license.</li>
+        <li>Reselling, sharing, uploading to shared drives, or redistributing our PDFs, Google Sheets formulas, or Pine Script codes is strictly prohibited.</li>
+      </ul>
+
+      <h4>3. Product Access</h4>
+      <p>Digital downloads are delivered immediately upon confirmed payment on screen and via email confirmation.</p>
+    </div>
+  </div>
+
+  <!-- 3. REFUND POLICY MODAL -->
+  <div id="refundModal" class="modal-overlay" onclick="closeModalOutside(event, 'refundModal')">
+    <div class="modal-content">
+      <button class="modal-close" type="button" onclick="closeModal('refundModal')">&times;</button>
+      <h3>Refund & Cancellation Policy</h3>
+      <p><strong>Last Updated:</strong> August 2026</p>
+
+      <h4>1. Digital Product Policy (No Refunds)</h4>
+      <p>Due to the instant delivery and non-returnable digital format of our downloadable tools (PDF E-Books, Google Sheet templates, Pine Script indicator codes), <strong>all sales are final and non-refundable</strong> once access is provided.</p>
+
+      <h4>2. Duplicate Transactions</h4>
+      <p>If you are charged twice due to a network glitch during payment, email your transaction details to our team. Duplicate charges will be verified and refunded to your original payment mode within 5–7 working days.</p>
+
+      <h4>3. Delivery Assistance</h4>
+      <p>If you do not receive your download links within 10 minutes of payment, please email <strong>prembudha800@gmail.com</strong> with your Razorpay payment ID for fast manual delivery.</p>
+    </div>
+  </div>
+
+  <!-- 4. CONTACT US MODAL -->
+  <div id="contactModal" class="modal-overlay" onclick="closeModalOutside(event, 'contactModal')">
+    <div class="modal-content">
+      <button class="modal-close" type="button" onclick="closeModal('contactModal')">&times;</button>
+      <h3>Contact Us</h3>
+      <p>Have questions about the toolkit or facing issues with your order download? Reach out to us directly:</p>
+
+      <div style="margin-top: 16px; padding: 16px; background: #1f2937; border-radius: 8px; border: 1px solid var(--border-color);">
+        <p><strong>Brand:</strong> ExtrasalaryDotcom</p>
+        <p style="margin-top: 6px;"><strong>Official Support Email:</strong> support@extrasalarydotcom.com</p>
+        <p style="margin-top: 6px;"><strong>Response Time:</strong> Within 24 hours (Monday to Saturday)</p>
+        <p style="margin-top: 6px;"><strong>Location:</strong> Surat, Gujarat, India</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL JAVASCRIPT LOGIC -->
+  <script>
+    function openModal(id) {
+      document.getElementById(id).style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    function closeModalOutside(event, id) {
+      if (event.target.classList.contains('modal-overlay')) {
+        closeModal(id);
+      }
+    }
+
+    // Close modal on Escape key press
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        const modals = document.querySelectorAll('.modal-overlay');
+        modals.forEach(m => m.style.display = 'none');
+        document.body.style.overflow = 'auto';
+      }
+    });
+  </script>
 
 </body>
 </html>
