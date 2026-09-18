@@ -28,6 +28,7 @@
       padding: 0;
       box-sizing: border-box;
       font-family: 'Inter', sans-serif;
+      -webkit-touch-callout: none; /* मोबाइल पर लॉन्ग-प्रेस मेनू ब्लॉक */
     }
 
     html {
@@ -38,6 +39,19 @@
       background-color: var(--bg-dark);
       color: var(--text-light);
       line-height: 1.6;
+      -webkit-user-select: none; /* सफारी और क्रोम में सिलेक्शन ब्लॉक */
+      -moz-user-select: none;    /* फ़ायरफ़ॉक्स */
+      -ms-user-select: none;     /* एज */
+      user-select: none;         /* स्टैंडर्ड */
+    }
+
+    /* इनपुट व फॉर्म फील्ड्स चालू रखने के लिए */
+    input, textarea, select {
+      -webkit-touch-callout: default !important;
+      -webkit-user-select: auto !important;
+      -moz-user-select: auto !important;
+      -ms-user-select: auto !important;
+      user-select: auto !important;
     }
 
     .container {
@@ -480,7 +494,7 @@
     <!-- HERO -->
     <header class="hero">
       <div style="text-align: left; margin-bottom: 15px;">
-        <a href="https://extrasalarydotcom.github.io/6odaystrader-roadmap/" style="text-decoration: none; display: inline-block;">
+        <a href="https://extrasalarydotcom.github.io/6odaystrader-roadmap/" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: inline-block;">
           <img src="https://yt3.ggpht.com/zjuAvp8-sptJt6w6T1p9Jv4SEqocu9uxY4eTMUrRAn7QhpNKEwdqZ0r9DMhMvDTAQ4oqz4DMSw=s600-c-k-c0x00ffffff-no-rj-rp-mo" alt="ExtrasalaryDotcom" style="width: 42px; height: 42px; border-radius: 50%; vertical-align: middle; margin-right: 8px; border: 2px solid #fbbf24;">
           <span style="font-size: 22px; font-weight: 800; vertical-align: middle;">
             <span style="color: #fbbf24;">Extrasalary</span><span style="color: #ef4444;">Dotcom</span>
@@ -536,8 +550,8 @@
               <li class="disabled">Pine Script Indicator Access</li>
             </ul>
           </div>
-          <!-- ACTIVE RAZORPAY LINK ₹199 -->
-          <a href="https://rzp.io/rzp/HDcbtiPz" class="btn-buy btn-outline">Get E-Book Only</a>
+          <!-- ACTIVE RAZORPAY LINK ₹199 (सुरक्षित noopener noreferrer टैग के साथ) -->
+          <a href="https://rzp.io/rzp/HDcbtiPz" target="_blank" rel="noopener noreferrer" class="btn-buy btn-outline">Get E-Book Only</a>
         </div>
 
         <!-- PLAN 2: PRO BUNDLE (BEST VALUE) -->
@@ -559,8 +573,8 @@
               <li class="disabled">Pine Script Indicator Access</li>
             </ul>
           </div>
-          <!-- ACTIVE RAZORPAY LINK ₹299 -->
-          <a href="https://rzp.io/rzp/akUQpGF" class="btn-buy btn-gold">Get Pro Bundle</a>
+          <!-- ACTIVE RAZORPAY LINK ₹299 (सुरक्षित noopener noreferrer टैग के साथ) -->
+          <a href="https://rzp.io/rzp/akUQpGF" target="_blank" rel="noopener noreferrer" class="btn-buy btn-gold">Get Pro Bundle</a>
         </div>
 
         <!-- PLAN 3: VIP MASTER PASS -->
@@ -580,8 +594,8 @@
               <li><strong>Lifetime Free Updates</strong> (All upcoming tools & scripts)</li>
             </ul>
           </div>
-          <!-- ACTIVE RAZORPAY LINK ₹499 -->
-          <a href="https://rzp.io/rzp/JbqQiVhi" class="btn-buy btn-blue">Get VIP Access</a>
+          <!-- ACTIVE RAZORPAY LINK ₹499 (सुरक्षित noopener noreferrer टैग के साथ) -->
+          <a href="https://rzp.io/rzp/JbqQiVhi" target="_blank" rel="noopener noreferrer" class="btn-buy btn-blue">Get VIP Access</a>
         </div>
 
       </div>
@@ -618,7 +632,7 @@
         <button type="button" onclick="openModal('contactModal')">Contact Us</button>
       </div>
       <p>© 2026 ExtrasalaryDotcom. All Rights Reserved.</p>
-      <p style="margin-top: 6px;">Need Help? Contact:supportextrasalarydotcom@gmail.com</p>
+      <p style="margin-top: 6px;">Need Help? Contact: supportextrasalarydotcom@gmail.com</p>
       <p style="margin-top: 10px; font-size: 0.75rem; color: #6b7280; max-width: 820px; margin-left: auto; margin-right: auto; line-height: 1.5;">
         <strong>Disclaimer:</strong> ExtrasalaryDotcom is not a SEBI-registered advisor or research analyst. All educational materials, roadmaps, spreadsheets, and indicator scripts are strictly for educational and informational purposes. Trading Forex, Commodities (Gold), and Cryptocurrencies carries substantial financial risk. Only trade with capital you can afford to lose.
       </p>
@@ -716,8 +730,9 @@
     </div>
   </div>
 
-  <!-- MODAL JAVASCRIPT LOGIC -->
+  <!-- MODAL JAVASCRIPT & ULTRA-LEVEL SECURITY SHIELD -->
   <script>
+    // --- MODAL CONTROLLERS ---
     function openModal(id) {
       document.getElementById(id).style.display = 'flex';
       document.body.style.overflow = 'hidden';
@@ -740,6 +755,76 @@
         const modals = document.querySelectorAll('.modal-overlay');
         modals.forEach(m => m.style.display = 'none');
         document.body.style.overflow = 'auto';
+      }
+    });
+
+    // --- FULL SECURITY SHIELD ---
+
+    // 1. राइट-क्लिक और मोबाइल लॉन्ग-प्रेस ब्लॉक
+    document.addEventListener('contextmenu', function(e) {
+      const isInput = ['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName);
+      if (!isInput) {
+        e.preventDefault();
+        return false;
+      }
+    });
+
+    // 2. टेक्स्ट कॉपी और कट ब्लॉक
+    document.addEventListener('copy', function(e) {
+      const isInput = ['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName);
+      if (!isInput) {
+        e.preventDefault();
+        return false;
+      }
+    });
+
+    document.addEventListener('cut', function(e) {
+      const isInput = ['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName);
+      if (!isInput) {
+        e.preventDefault();
+        return false;
+      }
+    });
+
+    // 3. ड्रैग करके टेक्स्ट सिलेक्ट करना ब्लॉक
+    document.addEventListener('dragstart', function(e) {
+      const isInput = ['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName);
+      if (!isInput) {
+        e.preventDefault();
+        return false;
+      }
+    });
+
+    // 4. DevTools और कीबोर्ड शॉर्टकट ब्लॉक
+    document.addEventListener('keydown', function(e) {
+      const isInput = ['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName);
+
+      // F12 ब्लॉक
+      if (e.key === 'F12') {
+        e.preventDefault();
+        return false;
+      }
+
+      // Ctrl + Shift + I / J / C (DevTools शॉर्टकट)
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey) {
+        const k = e.key.toLowerCase();
+        if (k === 'i' || k === 'j' || k === 'c') {
+          e.preventDefault();
+          return false;
+        }
+      }
+
+      // Ctrl / Command शॉर्टकट ब्लॉक (View Source, Save, Print, Copy, Select All)
+      if (e.ctrlKey || e.metaKey) {
+        const k = e.key.toLowerCase();
+        if (['u', 's', 'p'].includes(k)) {
+          e.preventDefault();
+          return false;
+        }
+        if (['a', 'c'].includes(k) && !isInput) {
+          e.preventDefault();
+          return false;
+        }
       }
     });
   </script>
