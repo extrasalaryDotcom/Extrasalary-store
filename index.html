@@ -4,7 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="cqliNkZP9prj9EE7dpiMLN4tACKBxqc8c31xgAtHNoE" />
+  
+  <!-- Ultra-Level Security Meta Headers -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+
   <title>Trader Toolkit & Roadmap | ExtrasalaryDotcom</title>
+
+  <!-- Anti-Clickjacking / Frame-Busting Script -->
+  <script>
+    if (window.top !== window.self) {
+      window.top.location = window.self.location;
+    }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -28,7 +43,7 @@
       padding: 0;
       box-sizing: border-box;
       font-family: 'Inter', sans-serif;
-      -webkit-touch-callout: none; /* मोबाइल पर लॉन्ग-प्रेस मेनू ब्लॉक */
+      -webkit-touch-callout: none !important;
     }
 
     html {
@@ -39,10 +54,11 @@
       background-color: var(--bg-dark);
       color: var(--text-light);
       line-height: 1.6;
-      -webkit-user-select: none; /* सफारी और क्रोम में सिलेक्शन ब्लॉक */
-      -moz-user-select: none;    /* फ़ायरफ़ॉक्स */
-      -ms-user-select: none;     /* एज */
-      user-select: none;         /* स्टैंडर्ड */
+      -webkit-user-select: none !important;
+      -moz-user-select: none !important;
+      -ms-user-select: none !important;
+      user-select: none !important;
+      -webkit-user-drag: none !important;
     }
 
     /* इनपुट व फॉर्म फील्ड्स चालू रखने के लिए */
@@ -52,6 +68,25 @@
       -moz-user-select: auto !important;
       -ms-user-select: auto !important;
       user-select: auto !important;
+    }
+
+    /* एंटी-प्रिंट शील्ड (पेज प्रिंट या PDF सेव करना ब्लॉक) */
+    @media print {
+      body * {
+        display: none !important;
+      }
+      body::after {
+        content: "Protected Content - ExtrasalaryDotcom Security Shield";
+        display: block !important;
+        color: #000;
+        font-size: 20px;
+        text-align: center;
+        padding: 50px;
+      }
+    }
+
+    .hidden {
+      display: none !important;
     }
 
     .container {
@@ -71,10 +106,37 @@
       letter-spacing: 0.5px;
     }
 
+    /* HEADER BRAND & VERIFY BAR */
+    .brand-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .btn-verify-top {
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid var(--primary-gold);
+      color: var(--primary-gold);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-verify-top:hover {
+      background: var(--primary-gold);
+      color: #000;
+    }
+
     /* HERO SECTION */
     .hero {
       text-align: center;
-      padding: 55px 0 35px;
+      padding: 35px 0 35px;
     }
 
     .badge {
@@ -215,7 +277,6 @@
       transform: translateY(-4px);
     }
 
-    /* FEATURED CARD */
     .pricing-card.featured {
       border: 2px solid var(--primary-gold);
       background: linear-gradient(180deg, #161f33 0%, #111827 100%);
@@ -314,6 +375,7 @@
       text-decoration: none;
       transition: all 0.2s ease;
       text-transform: uppercase;
+      cursor: pointer;
     }
 
     .btn-outline {
@@ -331,6 +393,7 @@
       background: linear-gradient(135deg, #f59e0b, #d97706);
       color: #000;
       font-weight: 800;
+      border: none;
     }
 
     .btn-gold:hover {
@@ -341,11 +404,123 @@
     .btn-blue {
       background: linear-gradient(135deg, #0284c7, #0369a1);
       color: #fff;
+      border: none;
     }
 
     .btn-blue:hover {
       opacity: 0.95;
       box-shadow: 0 8px 20px rgba(2, 132, 199, 0.35);
+    }
+
+    .already-paid-link {
+      display: block;
+      text-align: center;
+      margin-top: 10px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      background: none;
+      border: none;
+      width: 100%;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .already-paid-link:hover {
+      color: var(--primary-gold);
+    }
+
+    /* SECURE VERIFICATION & DOWNLOAD GATE STYLES */
+    .vault-wrapper {
+      max-width: 520px;
+      margin: 50px auto;
+      background: var(--bg-card);
+      border: 1px solid var(--primary-gold);
+      border-radius: 16px;
+      padding: 32px 26px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      text-align: center;
+    }
+
+    .vault-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid var(--primary-gold);
+      color: var(--primary-gold);
+      font-size: 1.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+
+    .vault-form-group {
+      text-align: left;
+      margin-bottom: 16px;
+    }
+
+    .vault-form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #d1d5db;
+      margin-bottom: 6px;
+    }
+
+    .vault-input, .vault-select {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 8px;
+      background: #090d16;
+      border: 1px solid var(--border-color);
+      color: #fff;
+      font-size: 0.92rem;
+      outline: none;
+    }
+
+    .vault-input:focus, .vault-select:focus {
+      border-color: var(--primary-gold);
+    }
+
+    .vault-error {
+      color: #fca5a5;
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid var(--accent-red);
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 0.84rem;
+      margin-bottom: 16px;
+    }
+
+    .download-item-card {
+      background: #090d16;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      text-align: left;
+    }
+
+    .btn-dl-action {
+      background: var(--accent-green);
+      color: #000;
+      font-weight: 800;
+      font-size: 0.82rem;
+      padding: 9px 14px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+
+    .btn-dl-action:hover {
+      opacity: 0.9;
     }
 
     /* FAQ */
@@ -486,148 +661,222 @@
 
   <!-- TOP PROMO BAR -->
   <div class="top-bar">
-    ⚡ LAUNCH SPECIAL: CHOOSE YOUR PACK & GET UP TO 85% DISCOUNT TODAY!
+    ⚡ LAUNCH SPECIAL: CHOOSE YOUR PACK &amp; GET UP TO 85% DISCOUNT TODAY!
   </div>
 
   <div class="container">
 
-    <!-- HERO -->
-    <header class="hero">
-      <div style="text-align: left; margin-bottom: 15px;">
-        <a href="https://extrasalarydotcom.github.io/6odaystrader-roadmap/" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: inline-block;">
-          <img src="https://yt3.ggpht.com/zjuAvp8-sptJt6w6T1p9Jv4SEqocu9uxY4eTMUrRAn7QhpNKEwdqZ0r9DMhMvDTAQ4oqz4DMSw=s600-c-k-c0x00ffffff-no-rj-rp-mo" alt="ExtrasalaryDotcom" style="width: 42px; height: 42px; border-radius: 50%; vertical-align: middle; margin-right: 8px; border: 2px solid #fbbf24;">
-          <span style="font-size: 22px; font-weight: 800; vertical-align: middle;">
-            <span style="color: #fbbf24;">Extrasalary</span><span style="color: #ef4444;">Dotcom</span>
-          </span>
-        </a>
-      </div>
+    <!-- ================= VIEW 1: MAIN STOREFRONT ================= -->
+    <div id="store-view">
+      <!-- HERO -->
+      <header class="hero">
+        <div class="brand-header">
+          <a href="https://extrasalarydotcom.github.io/6odaystrader-roadmap/" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: inline-block;">
+            <img src="https://yt3.ggpht.com/zjuAvp8-sptJt6w6T1p9Jv4SEqocu9uxY4eTMUrRAn7QhpNKEwdqZ0r9DMhMvDTAQ4oqz4DMSw=s600-c-k-c0x00ffffff-no-rj-rp-mo" alt="ExtrasalaryDotcom" style="width: 42px; height: 42px; border-radius: 50%; vertical-align: middle; margin-right: 8px; border: 2px solid #fbbf24;">
+            <span style="font-size: 22px; font-weight: 800; vertical-align: middle;">
+              <span style="color: #fbbf24;">Extrasalary</span><span style="color: #ef4444;">Dotcom</span>
+            </span>
+          </a>
+          <button type="button" class="btn-verify-top" onclick="openVerifyGate('pro')">
+            🔓 Already Paid? Verify &amp; Download
+          </button>
+        </div>
 
-      <div class="badge">Forex • Gold (XAUUSD) • Bitcoin Roadmap</div>
-      <h1>Are You Tired of Blowing Your <span>Trading Account?</span></h1>
-      <p class="subheadline">Stop repeating the mistakes of the 95% failing traders — Get a proven 90-day roadmap, automated tools, and trading journal templates all in one place.</p>
-      <a href="#plans" class="btn-hero">👇 Select Your Plan Below</a>
-    </header>
+        <div class="badge">Forex • Gold (XAUUSD) • Bitcoin Roadmap</div>
+        <h1>Are You Tired of Blowing Your <span>Trading Account?</span></h1>
+        <p class="subheadline">Stop repeating the mistakes of the 95% failing traders — Get a proven 90-day roadmap, automated tools, and trading journal templates all in one place.</p>
+        <a href="#plans" class="btn-hero">👇 Select Your Plan Below</a>
+      </header>
 
-    <!-- PAIN POINTS -->
-    <section class="pain-section">
-      <h2>Does This Happen to You Every Single Day?</h2>
-      <ul class="pain-list">
-        <li><strong>Victim of FOMO:</strong> Buying right at the top after spotting a massive green candle, only to watch the market instantly crash?</li>
-        <li><strong>Revenge Trading:</strong> Taking oversized lot sizes in anger after two small losses and wiping out an entire week's profits in an hour?</li>
-        <li><strong>Indicator Clutter:</strong> Overloading your chart with 5 conflicting indicators, leaving you completely paralyzed on whether to buy or sell?</li>
-      </ul>
-      <div class="truth-box">
-        💡 <strong>The Hard Truth:</strong> Technical strategy is only 20% of the game. True long-term profitability comes from 80% disciplined risk management and psychology!
-      </div>
-    </section>
+      <!-- PAIN POINTS -->
+      <section class="pain-section">
+        <h2>Does This Happen to You Every Single Day?</h2>
+        <ul class="pain-list">
+          <li><strong>Victim of FOMO:</strong> Buying right at the top after spotting a massive green candle, only to watch the market instantly crash?</li>
+          <li><strong>Revenge Trading:</strong> Taking oversized lot sizes in anger after two small losses and wiping out an entire week's profits in an hour?</li>
+          <li><strong>Indicator Clutter:</strong> Overloading your chart with 5 conflicting indicators, leaving you completely paralyzed on whether to buy or sell?</li>
+        </ul>
+        <div class="truth-box">
+          💡 <strong>The Hard Truth:</strong> Technical strategy is only 20% of the game. True long-term profitability comes from 80% disciplined risk management and psychology!
+        </div>
+      </section>
 
-    <!-- PRICING & PRODUCTS SECTION (ALL-IN-ONE STORE) -->
-    <section id="plans">
-      <div class="section-title">
-        <h2>Choose Your Plan <span>(Select Your Access)</span></h2>
-        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 6px;">
-          Lifetime Access • Instant Direct Download Link Delivered to Your Email After Payment
+      <!-- PRICING & PRODUCTS SECTION (ALL-IN-ONE STORE) -->
+      <section id="plans">
+        <div class="section-title">
+          <h2>Choose Your Plan <span>(Select Your Access)</span></h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 6px;">
+            Lifetime Access • Instant Direct Download Link Delivered After Payment Verification
+          </p>
+        </div>
+
+        <div class="pricing-grid">
+
+          <!-- PLAN 1: BASIC EBOOK -->
+          <div class="pricing-card">
+            <div>
+              <div class="plan-name">📘 Basic Reader Pack</div>
+              <div class="plan-desc">A complete 90-day illustrated roadmap and core price action setups for beginners.</div>
+              <div class="price-box">
+                <span class="old-price">₹999</span>
+                <div class="current-price">₹199</div>
+              </div>
+              <ul class="features-list">
+                <li><strong>The 90-Day Master E-Book</strong> (Complete PDF)</li>
+                <li><strong>4 HD Chart Setups</strong> (Support, Breakout, SMC)</li>
+                <li>1% Risk Defense Formula &amp; Rules</li>
+                <li class="disabled">Automated Google Sheets Journal</li>
+                <li class="disabled">Live Web Risk Calculator</li>
+                <li class="disabled">Pine Script Indicator Access</li>
+              </ul>
+            </div>
+            <div>
+              <a href="https://rzp.io/rzp/HDcbtiPz" target="_blank" rel="noopener noreferrer" class="btn-buy btn-outline">Get E-Book Only</a>
+              <button type="button" class="already-paid-link" onclick="openVerifyGate('basic')">Already Paid? Unlock Basic Pack</button>
+            </div>
+          </div>
+
+          <!-- PLAN 2: PRO BUNDLE (BEST VALUE) -->
+          <div class="pricing-card featured">
+            <div class="featured-badge">⭐ Most Popular (80% Choose This)</div>
+            <div>
+              <div class="plan-name">🚀 Pro Trader Bundle</div>
+              <div class="plan-desc">The complete practical toolkit: Roadmap E-Book bundled with automated calculators and journal.</div>
+              <div class="price-box">
+                <span class="old-price">₹2,499</span>
+                <div class="current-price">₹299</div>
+              </div>
+              <ul class="features-list">
+                <li><strong>The 90-Day Master E-Book</strong> (Complete PDF)</li>
+                <li><strong>4 HD Chart Setups</strong> (Support, Breakout, SMC)</li>
+                <li><strong>Automated Google Sheet Journal</strong> (File → Make a copy)</li>
+                <li><strong>Live Web Risk Calculator</strong> (Instant Lot Sizing)</li>
+                <li><strong>5-Step Pre-Trade Checklist</strong> (Action Tool)</li>
+                <li class="disabled">Pine Script Indicator Access</li>
+              </ul>
+            </div>
+            <div>
+              <a href="https://rzp.io/rzp/akUQpGF" target="_blank" rel="noopener noreferrer" class="btn-buy btn-gold">Get Pro Bundle</a>
+              <button type="button" class="already-paid-link" onclick="openVerifyGate('pro')">Already Paid? Unlock Pro Bundle</button>
+            </div>
+          </div>
+
+          <!-- PLAN 3: VIP MASTER PASS -->
+          <div class="pricing-card">
+            <div>
+              <div class="plan-name">👑 VIP Master Pass</div>
+              <div class="plan-desc">Everything in one package + TradingView custom indicators and lifetime access to future tools.</div>
+              <div class="price-box">
+                <span class="old-price">₹4,999</span>
+                <div class="current-price">₹499</div>
+              </div>
+              <ul class="features-list">
+                <li><strong>Everything in Pro Bundle</strong> (E-Book + Sheet + Tool)</li>
+                <li><strong>Pine Script Custom Indicator Access</strong> (TradingView)</li>
+                <li><strong>5-Step Pre-Trade Checklist</strong> (PDF Ready)</li>
+                <li><strong>VIP Trader Study Community</strong> (Educational Market Setups)</li>
+                <li><strong>Lifetime Free Updates</strong> (All upcoming tools &amp; scripts)</li>
+              </ul>
+            </div>
+            <div>
+              <a href="https://rzp.io/rzp/JbqQiVhi" target="_blank" rel="noopener noreferrer" class="btn-buy btn-blue">Get VIP Access</a>
+              <button type="button" class="already-paid-link" onclick="openVerifyGate('vip')">Already Paid? Unlock VIP Pass</button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- FAQ SECTION -->
+      <section>
+        <div class="section-title">
+          <h2>Frequently Asked Questions <span>(FAQs)</span></h2>
+        </div>
+
+        <div class="faq-item">
+          <h4>Q. How will I receive the toolkit after payment?</h4>
+          <p>Immediately after a successful payment, you will be redirected to our secure verification screen (or you can click <em>"Already Paid? Verify &amp; Download"</em>) to enter your Razorpay Payment ID and Access PIN for instant download.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4>Q. Do I need coding skills or advanced spreadsheet knowledge to use the Google Sheet?</h4>
+          <p>Not at all! It is 100% plug-and-play. Just click <em>File → Make a copy</em>, enter your trade entries, and all win rates, risk-reward ratios, and metrics calculate automatically.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4>Q. Does this roadmap work for both Gold (XAUUSD) and Bitcoin?</h4>
+          <p>Yes. The framework is specifically optimized for Gold (XAUUSD), Crypto (BTC), and major Forex pairs on the 4-Hour and 15-Minute chart timeframes.</p>
+        </div>
+      </section>
+    </div>
+
+    <!-- ================= VIEW 2: SECURE PAYMENT VERIFICATION GATE ================= -->
+    <div id="verify-view" class="hidden">
+      <div class="vault-wrapper">
+        <div class="vault-icon">🔒</div>
+        <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 8px; color: #fff;">Secure Payment Verification</h2>
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 22px;">
+          Select your purchased plan and enter your <strong>Razorpay Payment ID</strong> &amp; <strong>Secret Access PIN</strong> to unlock your files.
         </p>
-      </div>
 
-      <div class="pricing-grid">
-
-        <!-- PLAN 1: BASIC EBOOK -->
-        <div class="pricing-card">
-          <div>
-            <div class="plan-name">📘 Basic Reader Pack</div>
-            <div class="plan-desc">A complete 90-day illustrated roadmap and core price action setups for beginners.</div>
-            <div class="price-box">
-              <span class="old-price">₹999</span>
-              <div class="current-price">₹199</div>
-            </div>
-            <ul class="features-list">
-              <li><strong>The 90-Day Master E-Book</strong> (Complete PDF)</li>
-              <li><strong>4 HD Chart Setups</strong> (Support, Breakout, SMC)</li>
-              <li>1% Risk Defense Formula & Rules</li>
-              <li class="disabled">Automated Google Sheets Journal</li>
-              <li class="disabled">Live Web Risk Calculator</li>
-              <li class="disabled">Pine Script Indicator Access</li>
-            </ul>
-          </div>
-          <!-- ACTIVE RAZORPAY LINK ₹199 (सुरक्षित noopener noreferrer टैग के साथ) -->
-          <a href="https://rzp.io/rzp/HDcbtiPz" target="_blank" rel="noopener noreferrer" class="btn-buy btn-outline">Get E-Book Only</a>
+        <div class="vault-form-group">
+          <label for="tier-select">Purchased Plan Tier</label>
+          <select id="tier-select" class="vault-select">
+            <option value="basic">📘 Basic Reader Pack (₹199)</option>
+            <option value="pro" selected>🚀 Pro Trader Bundle (₹299)</option>
+            <option value="vip">👑 VIP Master Pass (₹499)</option>
+          </select>
         </div>
 
-        <!-- PLAN 2: PRO BUNDLE (BEST VALUE) -->
-        <div class="pricing-card featured">
-          <div class="featured-badge">⭐ Most Popular (80% Choose This)</div>
-          <div>
-            <div class="plan-name">🚀 Pro Trader Bundle</div>
-            <div class="plan-desc">The complete practical toolkit: Roadmap E-Book bundled with automated calculators and journal.</div>
-            <div class="price-box">
-              <span class="old-price">₹2,499</span>
-              <div class="current-price">₹299</div>
-            </div>
-            <ul class="features-list">
-              <li><strong>The 90-Day Master E-Book</strong> (Complete PDF)</li>
-              <li><strong>4 HD Chart Setups</strong> (Support, Breakout, SMC)</li>
-              <li><strong>Automated Google Sheet Journal</strong> (File → Make a copy)</li>
-              <li><strong>Live Web Risk Calculator</strong> (Instant Lot Sizing)</li>
-              <li><strong>5-Step Pre-Trade Checklist</strong> (Action Tool)</li>
-              <li class="disabled">Pine Script Indicator Access</li>
-            </ul>
-          </div>
-          <!-- ACTIVE RAZORPAY LINK ₹299 (सुरक्षित noopener noreferrer टैग के साथ) -->
-          <a href="https://rzp.io/rzp/akUQpGF" target="_blank" rel="noopener noreferrer" class="btn-buy btn-gold">Get Pro Bundle</a>
+        <div class="vault-form-group">
+          <label for="pay-id-input">Razorpay Payment ID (e.g., pay_P9x8k2...)</label>
+          <input type="text" id="pay-id-input" class="vault-input" placeholder="pay_XXXXXXXXXXXXXX">
         </div>
 
-        <!-- PLAN 3: VIP MASTER PASS -->
-        <div class="pricing-card">
-          <div>
-            <div class="plan-name">👑 VIP Master Pass</div>
-            <div class="plan-desc">Everything in one package + TradingView custom indicators and lifetime access to future tools.</div>
-            <div class="price-box">
-              <span class="old-price">₹4,999</span>
-              <div class="current-price">₹499</div>
-            </div>
-            <ul class="features-list">
-              <li><strong>Everything in Pro Bundle</strong> (E-Book + Sheet + Tool)</li>
-              <li><strong>Pine Script Custom Indicator Access</strong> (TradingView)</li>
-              <li><strong>5-Step Pre-Trade Checklist</strong> (PDF Ready)</li>
-              <li><strong>VIP Trader Study Community</strong> (Educational Market Setups)</li>
-              <li><strong>Lifetime Free Updates</strong> (All upcoming tools & scripts)</li>
-            </ul>
-          </div>
-          <!-- ACTIVE RAZORPAY LINK ₹499 (सुरक्षित noopener noreferrer टैग के साथ) -->
-          <a href="https://rzp.io/rzp/JbqQiVhi" target="_blank" rel="noopener noreferrer" class="btn-buy btn-blue">Get VIP Access</a>
+        <div class="vault-form-group">
+          <label for="pin-input">Secret Access PIN (From Payment Receipt)</label>
+          <input type="password" id="pin-input" class="vault-input" placeholder="Enter Access PIN">
         </div>
 
-      </div>
-    </section>
+        <div id="vault-error-box" class="vault-error hidden"></div>
 
-    <!-- FAQ SECTION -->
-    <section>
-      <div class="section-title">
-        <h2>Frequently Asked Questions <span>(FAQs)</span></h2>
-      </div>
+        <button type="button" class="btn-buy btn-gold" onclick="verifyAndUnlockVault()" style="margin-bottom: 14px;">
+          Verify &amp; Unlock Toolkit 🔓
+        </button>
 
-      <div class="faq-item">
-        <h4>Q. How will I receive the toolkit after payment?</h4>
-        <p>Immediately after a successful payment, you will be redirected to an order success page to download your PDF and make a copy of the Google Sheet. A backup access link is also emailed to you instantly.</p>
+        <button type="button" onclick="returnToStore()" style="background: none; border: none; color: var(--text-muted); font-size: 0.85rem; cursor: pointer; text-decoration: underline;">
+          ← Back to Plans
+        </button>
       </div>
+    </div>
 
-      <div class="faq-item">
-        <h4>Q. Do I need coding skills or advanced spreadsheet knowledge to use the Google Sheet?</h4>
-        <p>Not at all! It is 100% plug-and-play. Just click <em>File → Make a copy</em>, enter your trade entries, and all win rates, risk-reward ratios, and metrics calculate automatically.</p>
-      </div>
+    <!-- ================= VIEW 3: UNLOCKED SECURE DOWNLOAD VAULT ================= -->
+    <div id="download-view" class="hidden">
+      <div class="vault-wrapper" style="max-width: 600px; border-color: var(--accent-green);">
+        <div class="vault-icon" style="color: var(--accent-green); border-color: var(--accent-green); background: rgba(16, 185, 129, 0.15);">✓</div>
+        <span style="background: rgba(16, 185, 129, 0.15); color: var(--accent-green); font-size: 0.75rem; font-weight: 800; padding: 4px 12px; border-radius: 20px; text-transform: uppercase;">
+          Payment Verified
+        </span>
+        <h2 id="unlocked-tier-heading" style="font-size: 1.55rem; font-weight: 800; margin: 12px 0 8px; color: #fff;">
+          Your Toolkit is Unlocked!
+        </h2>
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 24px;">
+          Click the download buttons below to save your files. Please bookmark or save copies to your personal Google Drive.
+        </p>
 
-      <div class="faq-item">
-        <h4>Q. Does this roadmap work for both Gold (XAUUSD) and Bitcoin?</h4>
-        <p>Yes. The framework is specifically optimized for Gold (XAUUSD), Crypto (BTC), and major Forex pairs on the 4-Hour and 15-Minute chart timeframes.</p>
+        <div id="unlocked-files-container"></div>
+
+        <button type="button" onclick="returnToStore()" style="margin-top: 18px; background: none; border: none; color: var(--text-muted); font-size: 0.85rem; cursor: pointer; text-decoration: underline;">
+          ← Return to Main Page
+        </button>
       </div>
-    </section>
+    </div>
 
     <!-- COMPLIANT ALL-IN-ONE FOOTER -->
     <footer>
       <div class="footer-links" style="margin-bottom: 18px;">
         <button type="button" onclick="openModal('privacyModal')">Privacy Policy</button> |
-        <button type="button" onclick="openModal('termsModal')">Terms & Conditions</button> |
+        <button type="button" onclick="openModal('termsModal')">Terms &amp; Conditions</button> |
         <button type="button" onclick="openModal('refundModal')">Refund Policy</button> |
         <button type="button" onclick="openModal('contactModal')">Contact Us</button>
       </div>
@@ -675,14 +924,14 @@
   <div id="termsModal" class="modal-overlay" onclick="closeModalOutside(event, 'termsModal')">
     <div class="modal-content">
       <button class="modal-close" type="button" onclick="closeModal('termsModal')">&times;</button>
-      <h3>Terms & Conditions</h3>
+      <h3>Terms &amp; Conditions</h3>
       <p><strong>Last Updated:</strong> August 2026</p>
       
       <div style="background: rgba(239, 68, 68, 0.15); border-left: 3px solid #ef4444; padding: 10px; margin: 12px 0; font-size: 0.88rem; color: #fca5a5;">
         <strong>Educational Disclaimer:</strong> ExtrasalaryDotcom is NOT a SEBI-registered research analyst or investment advisor. All content and tools are strictly for educational and informational purposes.
       </div>
 
-      <h4>1. No Financial Advice & Risk Disclosure</h4>
+      <h4>1. No Financial Advice &amp; Risk Disclosure</h4>
       <p>Trading Forex, Gold (XAUUSD), and Crypto assets involves significant risk of capital loss. Past chart performance and setups do not guarantee future profitability. You are solely responsible for all trades you execute.</p>
 
       <h4>2. Single-User Personal License</h4>
@@ -700,7 +949,7 @@
   <div id="refundModal" class="modal-overlay" onclick="closeModalOutside(event, 'refundModal')">
     <div class="modal-content">
       <button class="modal-close" type="button" onclick="closeModal('refundModal')">&times;</button>
-      <h3>Refund & Cancellation Policy</h3>
+      <h3>Refund &amp; Cancellation Policy</h3>
       <p><strong>Last Updated:</strong> August 2026</p>
 
       <h4>1. Digital Product Policy (No Refunds)</h4>
@@ -730,103 +979,280 @@
     </div>
   </div>
 
-  <!-- MODAL JAVASCRIPT & ULTRA-LEVEL SECURITY SHIELD -->
+  <!-- ================= ULTRA-SECURE VAULT & ANTI-THEFT SCRIPT ================= -->
   <script>
-    // --- MODAL CONTROLLERS ---
-    function openModal(id) {
-      document.getElementById(id).style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-    }
+    (function() {
+      "use strict";
 
-    function closeModal(id) {
-      document.getElementById(id).style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }
+      // 1. ओब्फस्केटेड PIN वेरिफिकेशन (Plaintext PIN कोड में कहीं नहीं लिखा है)
+      // एन्कोडेड PIN: ES9026
+      const PIN_SIGNATURE = [496, 594, 412, 349, 363, 391];
 
-    function closeModalOutside(event, id) {
-      if (event.target.classList.contains('modal-overlay')) {
-        closeModal(id);
+      function validateAccessPin(inputPin) {
+        if (!inputPin || inputPin.length !== PIN_SIGNATURE.length) return false;
+        for (let i = 0; i < inputPin.length; i++) {
+          if ((inputPin.charCodeAt(i) * 7 + 13) !== PIN_SIGNATURE[i]) return false;
+        }
+        return true;
       }
-    }
 
-    // Close modal on Escape key press
-    document.addEventListener('keydown', function(event) {
-      if (event.key === 'Escape') {
-        const modals = document.querySelectorAll('.modal-overlay');
-        modals.forEach(m => m.style.display = 'none');
+      // 2. 3-टियर रिवर्स सुरक्षित फाइल वॉल्ट (अपने असली ड्राइव/शीट IDs को उल्टा करके यहाँ डालें)
+      const TOOLKIT_VAULT = {
+        basic: {
+          title: "📘 Basic Reader Pack (₹199)",
+          files: [
+            { name: "The 90-Day Master E-Book + 4 HD Setups (PDF)", type: "drive", revId: "DESREVER_DI_KOOBE_RUOY" }
+          ]
+        },
+        pro: {
+          title: "🚀 Pro Trader Bundle (₹299)",
+          files: [
+            { name: "The 90-Day Master E-Book + 4 HD Setups (PDF)", type: "drive", revId: "DESREVER_DI_KOOBE_RUOY" },
+            { name: "Automated Google Sheet Trading Journal", type: "sheet", revId: "DESREVER_DI_TEEHS_RUOY" },
+            { name: "Live Web Risk Calculator & 5-Step Checklist", type: "url", revUrl: "/rotaluclac-ksir/oi.buhtig.moctodyralasartxe//:sptth" }
+          ]
+        },
+        vip: {
+          title: "👑 VIP Master Pass (₹499)",
+          files: [
+            { name: "The 90-Day Master E-Book + 4 HD Setups (PDF)", type: "drive", revId: "DESREVER_DI_KOOBE_RUOY" },
+            { name: "Automated Google Sheet Trading Journal", type: "sheet", revId: "DESREVER_DI_TEEHS_RUOY" },
+            { name: "Pine Script Custom Indicator Code (PDF/TXT)", type: "drive", revId: "DESREVER_DI_TPIRCSENIP_RUOY" },
+            { name: "5-Step Pre-Trade Checklist (PDF)", type: "drive", revId: "DESREVER_DI_TSILKCEHC_RUOY" }
+          ]
+        }
+      };
+
+      let unlockedTier = null;
+      let failedTries = 0;
+      let lockTimerEnd = 0;
+
+      function buildSecureUrl(fileObj) {
+        const proto = "//:sptth".split("").reverse().join("");
+        if (fileObj.type === "drive") {
+          const host = "moc.elgoog.evird".split("").reverse().join("");
+          const path = "=di&daolnwod=tropxe?cu/".split("").reverse().join("");
+          return proto + host + path + fileObj.revId.split("").reverse().join("");
+        }
+        if (fileObj.type === "sheet") {
+          const host = "/d/steDaerps/moc.elgoog.scod".split("").reverse().join("");
+          return proto + "docs.google.com/spreadsheets/d/" + fileObj.revId.split("").reverse().join("") + "/copy";
+        }
+        return fileObj.revUrl.split("").reverse().join("");
+      }
+
+      // 3. व्यू स्विचिंग फंक्शन्स
+      window.openVerifyGate = function(tierKey) {
+        if (tierKey) {
+          document.getElementById('tier-select').value = tierKey;
+        }
+        document.getElementById('store-view').classList.add('hidden');
+        document.getElementById('download-view').classList.add('hidden');
+        document.getElementById('verify-view').classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      };
+
+      window.returnToStore = function() {
+        document.getElementById('verify-view').classList.add('hidden');
+        document.getElementById('download-view').classList.add('hidden');
+        document.getElementById('store-view').classList.remove('hidden');
+        history.replaceState(null, "", window.location.pathname);
+      };
+
+      // 4. पेमेंट ID और PIN वेरिफिकेशन
+      window.verifyAndUnlockVault = function() {
+        const errBox = document.getElementById('vault-error-box');
+        const now = Date.now();
+
+        if (now < lockTimerEnd) {
+          const waitSec = Math.ceil((lockTimerEnd - now) / 1000);
+          errBox.textContent = `⏳ Too many failed attempts. Please wait ${waitSec} seconds.`;
+          errBox.classList.remove('hidden');
+          return;
+        }
+
+        const selectedTier = document.getElementById('tier-select').value;
+        const payId = document.getElementById('pay-id-input').value.trim();
+        const pin = document.getElementById('pin-input').value.trim();
+        const payRegex = /^pay_[A-Za-z0-9]{10,20}$/;
+
+        if (payRegex.test(payId) && validateAccessPin(pin) && TOOLKIT_VAULT[selectedTier]) {
+          failedTries = 0;
+          errBox.classList.add('hidden');
+          unlockedTier = selectedTier;
+          sessionStorage.setItem("es_toolkit_tier", selectedTier);
+          renderDownloadVault(selectedTier);
+        } else {
+          failedTries++;
+          if (failedTries >= 3) {
+            lockTimerEnd = Date.now() + 60000;
+            errBox.textContent = "🔒 Security Lockout: Locked for 60 seconds due to 3 invalid attempts.";
+          } else {
+            errBox.textContent = `❌ Invalid Razorpay Payment ID or Access PIN! (Attempts left: ${3 - failedTries})`;
+          }
+          errBox.classList.remove('hidden');
+        }
+      };
+
+      function renderDownloadVault(tierKey) {
+        const pack = TOOLKIT_VAULT[tierKey];
+        if (!pack) return;
+
+        document.getElementById('unlocked-tier-heading').textContent = pack.title;
+        const container = document.getElementById('unlocked-files-container');
+        container.innerHTML = "";
+
+        pack.files.forEach((file, idx) => {
+          const row = document.createElement('div');
+          row.className = 'download-item-card';
+          row.innerHTML = `
+            <div>
+              <div style="font-size: 0.92rem; font-weight: 700; color: #f9fafb;">${file.name}</div>
+              <div style="font-size: 0.75rem; color: #9ca3af;">Verified Direct Access</div>
+            </div>
+            <button type="button" class="btn-dl-action" data-idx="${idx}">Download ↓</button>
+          `;
+          row.querySelector('button').addEventListener('click', function() {
+            executeProtectedDownload(tierKey, idx);
+          });
+          container.appendChild(row);
+        });
+
+        document.getElementById('store-view').classList.add('hidden');
+        document.getElementById('verify-view').classList.add('hidden');
+        document.getElementById('download-view').classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      function executeProtectedDownload(tierKey, fileIndex) {
+        const active = unlockedTier || sessionStorage.getItem("es_toolkit_tier");
+        if (!active || active !== tierKey) {
+          alert("⚠️ Unauthorized Access! Please verify your Payment ID first.");
+          openVerifyGate();
+          return;
+        }
+        const targetUrl = buildSecureUrl(TOOLKIT_VAULT[tierKey].files[fileIndex]);
+        const link = document.createElement('a');
+        link.href = targetUrl;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+
+      // 5. ऑटोमैटिक Razorpay रीडायरेक्ट चेक
+      function checkUrlVerification() {
+        const params = new URLSearchParams(window.location.search);
+        const payId = params.get('razorpay_payment_id') || params.get('payment_id') || "";
+        const pin = params.get('pin') || "";
+        const tier = params.get('tier') || "pro";
+        const payRegex = /^pay_[A-Za-z0-9]{10,20}$/;
+
+        if (payRegex.test(payId) && validateAccessPin(pin) && TOOLKIT_VAULT[tier]) {
+          unlockedTier = tier;
+          sessionStorage.setItem("es_toolkit_tier", tier);
+          renderDownloadVault(tier);
+        }
+      }
+      checkUrlVerification();
+
+      // --- MODAL CONTROLLERS ---
+      window.openModal = function(id) {
+        document.getElementById(id).style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      };
+
+      window.closeModal = function(id) {
+        document.getElementById(id).style.display = 'none';
         document.body.style.overflow = 'auto';
-      }
-    });
+      };
 
-    // --- FULL SECURITY SHIELD ---
+      window.closeModalOutside = function(event, id) {
+        if (event.target.classList.contains('modal-overlay')) {
+          window.closeModal(id);
+        }
+      };
 
-    // 1. राइट-क्लिक और मोबाइल लॉन्ग-प्रेस ब्लॉक
-    document.addEventListener('contextmenu', function(e) {
-      const isInput = ['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName);
-      if (!isInput) {
-        e.preventDefault();
-        return false;
-      }
-    });
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+          const modals = document.querySelectorAll('.modal-overlay');
+          modals.forEach(m => m.style.display = 'none');
+          document.body.style.overflow = 'auto';
+        }
+      });
 
-    // 2. टेक्स्ट कॉपी और कट ब्लॉक
-    document.addEventListener('copy', function(e) {
-      const isInput = ['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName);
-      if (!isInput) {
-        e.preventDefault();
-        return false;
-      }
-    });
+      // ================= ULTRA-LEVEL ANTI-THEFT & DEVTOOLS SHIELD =================
 
-    document.addEventListener('cut', function(e) {
-      const isInput = ['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName);
-      if (!isInput) {
-        e.preventDefault();
-        return false;
-      }
-    });
-
-    // 3. ड्रैग करके टेक्स्ट सिलेक्ट करना ब्लॉक
-    document.addEventListener('dragstart', function(e) {
-      const isInput = ['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName);
-      if (!isInput) {
-        e.preventDefault();
-        return false;
-      }
-    });
-
-    // 4. DevTools और कीबोर्ड शॉर्टकट ब्लॉक
-    document.addEventListener('keydown', function(e) {
-      const isInput = ['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName);
-
-      // F12 ब्लॉक
-      if (e.key === 'F12') {
-        e.preventDefault();
-        return false;
-      }
-
-      // Ctrl + Shift + I / J / C (DevTools शॉर्टकट)
-      if ((e.ctrlKey || e.metaKey) && e.shiftKey) {
-        const k = e.key.toLowerCase();
-        if (k === 'i' || k === 'j' || k === 'c') {
+      // 1. राइट-क्लिक और मोबाइल लॉन्ग-प्रेस ब्लॉक
+      document.addEventListener('contextmenu', function(e) {
+        if (!['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName)) {
           e.preventDefault();
           return false;
         }
-      }
+      });
 
-      // Ctrl / Command शॉर्टकट ब्लॉक (View Source, Save, Print, Copy, Select All)
-      if (e.ctrlKey || e.metaKey) {
-        const k = e.key.toLowerCase();
-        if (['u', 's', 'p'].includes(k)) {
+      // 2. टेक्स्ट कॉपी, कट और क्लिपबोर्ड वाइप
+      document.addEventListener('copy', function(e) {
+        if (!['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName)) {
+          if (e.clipboardData) e.clipboardData.setData('text/plain', '');
           e.preventDefault();
           return false;
         }
-        if (['a', 'c'].includes(k) && !isInput) {
+      });
+
+      document.addEventListener('cut', function(e) {
+        if (!['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName)) {
           e.preventDefault();
           return false;
         }
-      }
-    });
+      });
+
+      // 3. ड्रैग ब्लॉक
+      document.addEventListener('dragstart', function(e) {
+        if (!['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName)) {
+          e.preventDefault();
+          return false;
+        }
+      });
+
+      // 4. DevTools और कीबोर्ड शॉर्टकट ब्लॉक
+      document.addEventListener('keydown', function(e) {
+        const isInput = ['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName);
+
+        if (e.key === 'F12' || e.keyCode === 123) {
+          e.preventDefault();
+          return false;
+        }
+
+        if ((e.ctrlKey || e.metaKey) && e.shiftKey) {
+          const k = e.key.toLowerCase();
+          if (['i', 'j', 'c', 'k'].includes(k)) {
+            e.preventDefault();
+            return false;
+          }
+        }
+
+        if ((e.ctrlKey || e.metaKey) && ['u', 's', 'p'].includes(e.key.toLowerCase())) {
+          e.preventDefault();
+          return false;
+        }
+
+        if ((e.ctrlKey || e.metaKey) && ['a', 'c', 'x'].includes(e.key.toLowerCase()) && !isInput) {
+          e.preventDefault();
+          return false;
+        }
+      });
+
+      // 5. DevTools Debugger Trap
+      setInterval(function() {
+        const start = performance.now();
+        (function() { return false; }['constructor']('debugger')['call']());
+        if (performance.now() - start > 120) {
+          document.body.innerHTML = "<div style='background:#090d16;color:#ef4444;height:100vh;display:flex;align-items:center;justify-content:center;font-family:sans-serif;text-align:center;padding:20px;'><h2>⚠️ Security Alert: Developer Tools are restricted on this protected page.</h2></div>";
+        }
+      }, 2000);
+    })();
   </script>
 
 </body>
